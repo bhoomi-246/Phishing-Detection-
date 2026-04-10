@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>PhishGuard — URL Safety Detector</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Syne:wght@400;600;800&display=swap" rel="stylesheet"/>
+</head>
+<body>
+
+  <div class="bg-grid"></div>
+  <div class="scanline"></div>
+
+  <main class="container">
+
+    <header class="header">
+      <div class="logo-mark">
+        <span class="shield-icon">⬡</span>
+      </div>
+      <h1 class="title">PhishGuard</h1>
+      <p class="subtitle">Real-time phishing URL detection engine</p>
+    </header>
+
+    <section class="card">
+      <div class="input-group">
+        <label class="input-label" for="urlInput">Enter URL to analyze</label>
+        <div class="input-wrapper">
+          <span class="input-icon">⌕</span>
+          <input
+            type="text"
+            id="urlInput"
+            class="url-input"
+            placeholder="https://example.com"
+            autocomplete="off"
+            spellcheck="false"
+          />
+          <button class="clear-btn" id="clearBtn" title="Clear">✕</button>
+        </div>
+        <div class="input-hint" id="inputHint">Paste any URL — we'll analyze it instantly</div>
+      </div>
+
+      <button class="check-btn" id="checkBtn"> onclick="checkURL()">
+        <span class="btn-text">Analyze URL</span>
+        <span class="btn-arrow">→</span>
+      </button>
+
+      <!-- Loading State -->
+      <div class="loader-wrap" id="loaderWrap" hidden>
+        <div class="loader-bars">
+          <span></span><span></span><span></span><span></span><span></span>
+        </div>
+        <p class="loader-text">Scanning URL patterns...</p>
+      </div>
+
+      <!-- Result -->
+      <div class="result-wrap" id="resultWrap" hidden>
+        <div class="result-card" id="resultCard">
+          <div class="result-icon" id="resultIcon"></div>
+          <div class="result-content">
+            <div class="result-label" id="resultLabel"></div>
+            <div class="result-url" id="resultUrl"></div>
+            <div class="result-detail" id="resultDetail"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Error -->
+      <div class="error-wrap" id="errorWrap" hidden>
+        <div class="error-card">
+          <span class="error-icon">⚠</span>
+          <div>
+            <div class="error-title">Error</div>
+            <div class="error-msg" id="errorMsg"></div>
+          </div>
+        </div>
+      </div>
+
+    </section>
+
+    <footer class="footer">
+      <span>Powered by ML backend · POST /predict</span>
+    </footer>
+
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
+
+<!--cd backend
+python app.py>
